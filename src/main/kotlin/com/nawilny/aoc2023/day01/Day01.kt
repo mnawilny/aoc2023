@@ -1,6 +1,7 @@
 package com.nawilny.aoc2023.day01
 
-import com.nawilny.aoc2022.common.Input
+import com.nawilny.aoc2023.commons.Input
+import com.nawilny.aoc2023.commons.Input.println
 
 val stringDigits = mapOf(
     "one" to 1, "two" to 2, "three" to 3, "four" to 4, "five" to 5,
@@ -13,11 +14,11 @@ fun main() {
     // part 1
     val numbers1 = input.map { line -> line.filter { it.isDigit() } }
         .map { it.first().digitToInt() * 10 + it.last().digitToInt() }
-    println(numbers1.sum())
+    numbers1.sum().println()
 
     // part 2
     val numbers2 = input.map { getFirstDigit(it) * 10 + getLastDigit(it) }
-    println(numbers2.sum())
+    numbers2.sum().println()
 }
 
 private fun getFirstDigit(line: String): Int {

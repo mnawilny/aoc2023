@@ -1,4 +1,4 @@
-package com.nawilny.aoc2022.common
+package com.nawilny.aoc2023.commons
 
 object Input {
 
@@ -27,6 +27,10 @@ object Input {
             result.add(section)
         }
         return result
+    }
+
+    fun <T> T.println() {
+        println(this)
     }
 
 }

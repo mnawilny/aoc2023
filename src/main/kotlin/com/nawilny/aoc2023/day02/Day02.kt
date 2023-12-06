@@ -1,6 +1,7 @@
 package com.nawilny.aoc2023.day02
 
-import com.nawilny.aoc2022.common.Input
+import com.nawilny.aoc2023.commons.Input
+import com.nawilny.aoc2023.commons.Input.println
 import kotlin.math.max
 
 fun main() {
@@ -9,10 +10,10 @@ fun main() {
 
     // part 1
     val maxCubes = Cubes(red = 12, green = 13, blue = 14)
-    println(games.filter { it.canHaveOnly(maxCubes) }.sumOf { it.id })
+    games.filter { it.canHaveOnly(maxCubes) }.sumOf { it.id }.println()
 
     // part 2
-    println(games.sumOf { it.minSet().power() })
+    games.sumOf { it.minSet().power() }.println()
 }
 
 data class Game(val id: Int, val revealedSubsets: List<Cubes>) {

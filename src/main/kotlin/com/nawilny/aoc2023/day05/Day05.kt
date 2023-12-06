@@ -1,6 +1,7 @@
 package com.nawilny.aoc2023.day05
 
-import com.nawilny.aoc2022.common.Input
+import com.nawilny.aoc2023.commons.Input
+import com.nawilny.aoc2023.commons.Input.println
 
 fun main() {
     val input = Input.divideByNewLines(Input.readFileLines("day05", "input.txt"))
@@ -16,8 +17,8 @@ fun main() {
         values1 = values1.map { map.mapValue(it) }
         values2 = values2.flatMap { map.mapValueRanges(it) }
     }
-    println(values1.min())
-    println(values2.minBy { it.first }.first)
+    values1.min().println()
+    values2.minBy { it.first }.first.println()
 }
 
 private data class AlmanacMap(val from: String, val to: String, val ranges: List<AlmanacMapRange>) {
@@ -69,8 +70,8 @@ private data class AlmanacMapRange(val destinationStart: Long, val sourceStart: 
                 LongRange(mapValue(v.first)!!, mapValue(v.last)!!),
                 listOf()
             )
-        // range: ---|=========|---
-        // value: -|=============|-
+            // range: ---|=========|---
+            // value: -|=============|-
         } else if (v.first < sourceStart && v.last >= sourceStart + length) {
             RangingResult(
                 LongRange(destinationStart, destinationStart + length - 1),
@@ -79,22 +80,22 @@ private data class AlmanacMapRange(val destinationStart: Long, val sourceStart: 
                     LongRange(sourceStart + length, v.last)
                 )
             )
-        // range: ---|=========|---
-        // value: -|========|------
+            // range: ---|=========|---
+            // value: -|========|------
         } else if (v.first < sourceStart && v.last >= sourceStart) {
             RangingResult(
                 LongRange(mapValue(sourceStart)!!, mapValue(v.last)!!),
                 listOf(LongRange(v.first, sourceStart - 1))
             )
-        // range: ---|=========|---
-        // value: ------|========|-
+            // range: ---|=========|---
+            // value: ------|========|-
         } else if (v.first < sourceStart + length && v.last >= sourceStart + length) {
             RangingResult(
                 LongRange(mapValue(v.first)!!, mapValue(sourceStart + length - 1)!!),
                 listOf(LongRange(sourceStart + length, v.last))
             )
-        // range: -|====|-------
-        // value: --------|===|-
+            // range: -|====|-------
+            // value: --------|===|-
         } else {
             RangingResult(null, listOf(v))
         }

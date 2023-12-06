@@ -1,13 +1,14 @@
 package com.nawilny.aoc2023.day04
 
-import com.nawilny.aoc2022.common.Input
+import com.nawilny.aoc2023.commons.Input
+import com.nawilny.aoc2023.commons.Input.println
 
 fun main() {
     val input = Input.readFileLinesNormalized("day04", "input.txt")
     val cards = input.map { Card.parse(it) }
 
     // part 1
-    println(cards.map { it.getMatchingCards() }.sumOf { calculateScore(it) })
+    cards.map { it.getMatchingCards() }.sumOf { calculateScore(it) }.println()
 
     // part 2
     val cardsCounter = cards.associate { it.id to 1 }.toMutableMap()
@@ -18,7 +19,7 @@ fun main() {
             cardsCounter[i] = cardsCounter[i]!! + amount
         }
     }
-    println(cardsCounter.values.sum())
+    cardsCounter.values.sum().println()
 }
 
 private fun calculateScore(matchingCards: Int): Int {

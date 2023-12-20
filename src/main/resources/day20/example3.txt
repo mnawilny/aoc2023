@@ -1,0 +1,15 @@
+broadcaster -> a
+%a -> b, s
+%b -> c
+%c -> d
+%d -> e, s
+%e -> f, s
+%f -> g, s
+%g -> h
+%h -> i, s
+%i -> j
+%j -> k, s
+%k -> l, s
+%l -> s
+&s -> rx, a, b, c, g, i
+
